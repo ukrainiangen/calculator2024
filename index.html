@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Custom Pricing Calculator 2023</title>
+<style>
+    body {
+        font-family: Arial, sans-serif; /* Sets a nice, readable font */
+        background-color: #f4f4f9; /* Light grey background for easier viewing */
+        padding: 20px; /* Adds some space inside the body element */
+        margin: 0; /* Removes the default margin */
+    }
+    h1 {
+        color: #333; /* Dark grey text for the heading */
+    }
+    p {
+        color: #666; /* Lighter grey for paragraph text */
+    }
+    input, button {
+        font-size: 16px; /* Larger font size for better readability */
+        padding: 10px; /* Padding inside the input fields and button */
+        margin: 5px 0; /* Space above and below inputs and button */
+        border: 1px solid #ddd; /* Subtle border for inputs */
+    }
+    button {
+        background-color: #5c67f2; /* Blue background for the button */
+        color: white; /* White text on the button */
+        border: none; /* No border for a cleaner look */
+        cursor: pointer; /* Pointer cursor on hover */
+        transition: background-color 0.3s; /* Smooth transition for button on hover */
+    }
+    button:hover {
+        background-color: #4a54e1; /* Darker blue when hovering over the button */
+    }
+</style>
+</head>
+<body>
+    <h1>Custom Pricing Calculator</h1>
+    <p>Enter the number of locations:</p>
+    <input type="number" id="locationCount" placeholder="Enter locations">
+    <button onclick="calculatePrice()">Calculate Price</button>
+    <p>Total Price: $<span id="totalPrice">0</span></p>
+
+    <script>
+    function calculatePrice() {
+        var locations = document.getElementById('locationCount').value;
+        var price = 0;
+
+        if (locations <= 70) {
+            price = 200;
+        } else if (locations <= 100) {
+            price = 200 + (locations - 70) * 2.12;
+        } else if (locations <= 200) {
+            price = 200 + 30 * 2.12 + (locations - 100) * 2.00;
+        } else if (locations <= 500) {
+            price = 200 + 30 * 2.12 + 100 * 2.00 + (locations - 200) * 1.75;
+        } else if (locations <= 1000) {
+            price = 200 + 30 * 2.12 + 100 * 2.00 + 300 * 1.75 + (locations - 500) * 1.50;
+        } else if (locations <= 5000) {
+            price = 200 + 30 * 2.12 + 100 * 2.00 + 300 * 1.75 + 500 * 1.50 + (locations - 1000) * 1.25;
+        } else if (locations <= 7500) {
+            price = 200 + 30 * 2.12 + 100 * 2.00 + 300 * 1.75 + 500 * 1.50 + 4000 * 1.25 + (locations - 5000) * 0.75;
+        } else {
+            price = 200 + 30 * 2.12 + 100 * 2.00 + 300 * 1.75 + 500 * 1.50 + 4000 * 1.25 + 2500 * 0.75 + (locations - 7500) * 0.65;
+        }
+
+        document.getElementById('totalPrice').innerText = price.toFixed(2);
+    }
+    </script>
+</body>
+</html>
